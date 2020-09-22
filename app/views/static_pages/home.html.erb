@@ -1,6 +1,13 @@
 <h1>Find Photos</h1>
 
-<%= form_for :home do |f| %>
-  <%= f.label :flikr_id, "Flickr ID: " %>
-  <%= f.input :flickr_id %>
+<%= form_with(url: root_path, method: :GET, local: true) do %>
+  <%= label_tag :flikr_id, "Flickr ID: " %>
+  <%= text_field_tag :flickr_id %>
+  <%= submit_tag "Search for Photos" %>
+<% end %>
+
+<% if @photos %>
+  <% @urls.each do |url| %>
+    <p><%= image_tag(url) %></p>
+  <% end %>
 <% end %>
